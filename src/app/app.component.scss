@@ -1,0 +1,23 @@
+.add-user-button {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: rgb(58, 177, 216);
+  color: rgb(253, 253, 250);
+  border: 1px solid rgb(195, 195, 224);
+  margin-left: 1rem;
+  margin-top: 4rem;
+}
+
+.user-dashboard {
+  display: flex;
+  margin-left: 1rem;
+  #canvas {
+    margin-left: 20rem;
+    margin-top: 5rem;
+  }
+}
+
+#canvas {
+  width: 30rem !important;
+  height: 30rem !important;
+}

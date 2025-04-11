@@ -1,1 +1,13 @@
-<router-outlet />
+<button class="add-user-button" (click)="openUserForm()">Add user</button>
+@deferred{
+<div class="user-dashboard">
+  <app-user-dashboard />
+ <canvas id="canvas"></canvas>
+  </canvas>
+</div>
+}
+@loading{
+  <div>Loading users...</div>
+}
+
+<app-user-form *ngIf="showUserForm" (onClose)="showUserForm = false" />

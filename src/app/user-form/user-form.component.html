@@ -1,0 +1,23 @@
+<div class="user-form">
+  <div class="user-form-content">
+    <div class="close-button">
+      <button (click)="closeForm()">X</button>
+    </div>
+
+    <span>
+      Name:
+      <input [(ngModel)]="user.name" />
+    </span>
+
+    <span>
+      Email:
+      <input [(ngModel)]="user.email" />
+    </span>
+
+    <span>Role: <input [(ngModel)]="user.role" /></span>
+
+    <div class="close-button">
+      <button (click)="addUser(user)">Add user</button>
+    </div>
+  </div>
+</div>
