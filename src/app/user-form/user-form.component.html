@@ -4,6 +4,8 @@
       <button (click)="closeForm()">X</button>
     </div>
 
+    <hr />
+
     <span>
       Name:
       <input [(ngModel)]="user.name" />
@@ -16,8 +18,9 @@
 
     <span>Role: <input [(ngModel)]="user.role" /></span>
 
+    <hr />
     <div class="close-button">
-      <button (click)="addUser(user)">Add user</button>
+      <button (click)="addUser(user)" class="add-user-button">Add user</button>
     </div>
   </div>
 </div>

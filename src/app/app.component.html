@@ -1,13 +1,12 @@
 <button class="add-user-button" (click)="openUserForm()">Add user</button>
-@deferred{
+
 <div class="user-dashboard">
+  @defer{
   <app-user-dashboard />
- <canvas id="canvas"></canvas>
-  </canvas>
-</div>
-}
-@loading{
+  <app-chart id="canvas" />
+  } @loading(minimum 2s){
   <div>Loading users...</div>
-}
+  }
+</div>
 
 <app-user-form *ngIf="showUserForm" (onClose)="showUserForm = false" />

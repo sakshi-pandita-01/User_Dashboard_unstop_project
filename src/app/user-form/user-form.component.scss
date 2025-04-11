@@ -33,3 +33,15 @@
   display: flex;
   justify-content: flex-end;
 }
+
+hr {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.add-user-button {
+  padding: 1rem;
+  background-color: rgb(58, 177, 216);
+  color: rgb(253, 253, 250);
+  border: 1px solid rgb(195, 195, 224);
+}

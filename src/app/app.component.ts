@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { ChartComponent } from './chart/chart.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
@@ -14,11 +15,12 @@ import Chart from 'chart.js/auto';
     UserDashboardComponent,
     UserFormComponent,
     CommonModule,
+    ChartComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   title = 'app';
   showUserForm = false;
 
@@ -40,7 +42,21 @@ export class AppComponent implements OnInit {
     return this.users.filter((user: any) => user.role === role).length;
   }
 
+  ngAfterViewInit() {
+    const interval = setInterval(() => {
+      const marker = document.getElementById('after-defer-marker');
+      if (marker) {
+        clearInterval(interval);
+        this.initiateChart();
+      }
+    }, 50);
+  }
+
   ngOnInit() {
+    this.initiateChart();
+  }
+
+  initiateChart() {
     this.chart = new Chart('canvas', {
       type: 'doughnut',
       data: {
@@ -58,9 +74,5 @@ export class AppComponent implements OnInit {
         ],
       },
     });
-
-    this.chart.data.type = 'doughnut';
-
-    this.chart.update();
   }
 }
