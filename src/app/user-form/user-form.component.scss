@@ -22,9 +22,10 @@
     justify-content: space-around;
     padding: 2rem 0;
   }
-  input {
-    width: 50%;
-    padding: 0.2rem;
+  input,
+  select {
+    width: 29rem;
+    padding: 0.6rem;
     margin-left: 3rem;
   }
 }
@@ -40,7 +41,7 @@ hr {
 }
 
 .add-user-button {
-  padding: 1rem;
+  padding: 0.6rem;
   background-color: rgb(58, 177, 216);
   color: rgb(253, 253, 250);
   border: 1px solid rgb(195, 195, 224);
