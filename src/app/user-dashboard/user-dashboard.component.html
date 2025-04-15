@@ -1,26 +1,18 @@
 <div>
-  <div>
-    <table [ngClass]="{ 'user-table': true }">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>d</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>d</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div></div>
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of allUsers | async">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ roleMap[user.role] }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

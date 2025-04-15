@@ -18,7 +18,7 @@
 
     <span>
       Role:
-      <select name="role" id="role">
+      <select name="role" id="role" [(ngModel)]="user.role">
         <option value="admin">Admin</option>
         <option value="editor">Editor</option>
         <option value="viewer">Viewer</option>
@@ -27,7 +27,7 @@
 
     <hr />
     <div class="close-button">
-      <button (click)="addUser(user)" class="add-user-button">Add user</button>
+      <button (click)="addUser()" class="add-user-button">Add user</button>
     </div>
   </div>
 </div>

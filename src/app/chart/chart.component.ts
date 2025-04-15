@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 import Chart from 'chart.js/auto';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-chart',
@@ -10,8 +11,11 @@ import Chart from 'chart.js/auto';
 export class ChartComponent implements AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
 
+  constructor(private allUserService: UserService) {}
+
   ngAfterViewInit() {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
+
     if (ctx) {
       new Chart(ctx, {
         type: 'doughnut',
@@ -19,9 +23,13 @@ export class ChartComponent implements AfterViewInit {
           labels: ['Admin', 'Editor', 'Viewer'],
           datasets: [
             {
-              label: 'Votes',
-              data: [12, 19, 3],
-              backgroundColor: ['#383838', '#1c4980', 'yellow'],
+              label: 'Distribution of roles',
+              data: [
+                this.allUserService.getRoleNumber('admin'),
+                this.allUserService.getRoleNumber('editor'),
+                this.allUserService.getRoleNumber('viewer'),
+              ],
+              borderWidth: 1,
             },
           ],
         },

@@ -1,12 +1,29 @@
-<button class="add-user-button" (click)="openUserForm()">Add user</button>
+<div class="nav-bar">
+  <span>User Dashboard</span>
+</div>
+<div *ngIf="(allUsers$ | async)?.length === 0">
+  <div class="start-page">
+    <h2>Welcome to User Dashboard Project</h2>
+    <h4>Start by adding a new user</h4>
 
-<div class="user-dashboard">
-  @defer{
-  <app-user-dashboard />
-  <app-chart id="canvas" />
-  } @loading(minimum 2s){
-  <div>Loading users...</div>
-  }
+    <button class="add-user-button" (click)="openUserForm()">Add user</button>
+  </div>
+</div>
+<div *ngIf="(allUsers$ | async)?.length !== 0">
+  <button class="add-user-button" (click)="openUserForm()">Add user</button>
+
+  <div class="user-dashboard">
+    @defer{
+    <app-user-dashboard [allUsers]="allUsers$" />
+    <app-chart id="canvas" />
+    } @loading(minimum 1s){
+    <div>Loading users...</div>
+    }
+  </div>
 </div>
 
-<app-user-form *ngIf="showUserForm" (onClose)="showUserForm = false" />
+<app-user-form
+  *ngIf="showUserForm"
+  (onClose)="showUserForm = false"
+  (addNewUser)="addNewUser($event)"
+/>

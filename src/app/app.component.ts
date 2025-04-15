@@ -3,10 +3,12 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { ChartComponent } from './chart/chart.component';
+import { User, UserService } from './shared/user.service';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
 import Chart from 'chart.js/auto';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,58 +23,27 @@ import Chart from 'chart.js/auto';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewInit {
+  constructor(private allUserService: UserService) {
+    this.allUsers$ = this.allUserService.data$;
+  }
   title = 'app';
   showUserForm = false;
+
+  allUsers$: Observable<User[]> = of([]);
 
   openUserForm() {
     this.showUserForm = true;
   }
 
-  users: any = [
-    {
-      name: '',
-      role: 'Admin',
-      email: '',
-    },
-  ];
-
   chart: any = [];
 
-  getRoleNumber(role: any) {
-    return this.users.filter((user: any) => user.role === role).length;
-  }
-
-  ngAfterViewInit() {
-    const interval = setInterval(() => {
-      const marker = document.getElementById('after-defer-marker');
-      if (marker) {
-        clearInterval(interval);
-        this.initiateChart();
-      }
-    }, 50);
-  }
+  ngAfterViewInit() {}
 
   ngOnInit() {
-    this.initiateChart();
+    this.allUsers$ = this.allUserService.data$;
   }
 
-  initiateChart() {
-    this.chart = new Chart('canvas', {
-      type: 'doughnut',
-      data: {
-        labels: ['Admin', 'Editor', 'Viewer'],
-        datasets: [
-          {
-            label: 'Distribution of roles',
-            data: [
-              this.getRoleNumber('Admin'),
-              this.getRoleNumber('Editor'),
-              this.getRoleNumber('Viewer'),
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-    });
+  addNewUser(user: any) {
+    this.allUserService.updateUsers(user);
   }
 }

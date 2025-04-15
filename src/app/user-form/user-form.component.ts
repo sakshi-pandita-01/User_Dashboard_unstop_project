@@ -11,12 +11,13 @@ export class UserFormComponent {
   user = { name: '', email: '', role: '' };
 
   @Output() onClose = new EventEmitter<any>();
+  @Output() addNewUser = new EventEmitter<any>();
 
   closeForm() {
     this.onClose.emit();
   }
 
-  addUser(user: any) {
-    console.log('addded' + user);
+  addUser() {
+    this.addNewUser.emit(this.user);
   }
 }
