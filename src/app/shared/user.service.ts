@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 export interface User {
   name: string;
@@ -20,7 +20,9 @@ export class UserService {
     this.UserList.next([...currentData, user]);
   }
 
-  getRoleNumber(role: any) {
-    return this.UserList.value.filter((user: any) => user.role === role).length;
+  getRoleNumber(role: string): Observable<number> {
+    return this.data$.pipe(
+      map((users) => users.filter((user) => user.role === role).length)
+    );
   }
 }

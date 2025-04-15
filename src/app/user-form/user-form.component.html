@@ -1,5 +1,5 @@
 <div class="user-form">
-  <div class="user-form-content">
+  <form [formGroup]="myForm" class="user-form-content">
     <div class="close-button">
       <button (click)="closeForm()">X</button>
     </div>
@@ -8,17 +8,23 @@
 
     <span>
       Name:
-      <input [(ngModel)]="user.name" />
+      <input formControlName="name" />
     </span>
 
     <span>
       Email:
-      <input [(ngModel)]="user.email" />
+      <input formControlName="email" />
     </span>
 
     <span>
       Role:
-      <select name="role" id="role" [(ngModel)]="user.role">
+      <select
+        name="role"
+        id="role"
+        formControlName="role"
+        [disabled]="myForm.invalid"
+      >
+        <option value="" disabled selected>Select an option</option>
         <option value="admin">Admin</option>
         <option value="editor">Editor</option>
         <option value="viewer">Viewer</option>
@@ -29,5 +35,5 @@
     <div class="close-button">
       <button (click)="addUser()" class="add-user-button">Add user</button>
     </div>
-  </div>
+  </form>
 </div>

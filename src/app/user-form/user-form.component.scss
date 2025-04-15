@@ -22,12 +22,22 @@
     justify-content: space-around;
     padding: 2rem 0;
   }
-  input,
-  select {
+  input {
     width: 29rem;
     padding: 0.6rem;
     margin-left: 3rem;
   }
+  select {
+    width: 30.3rem;
+    padding: 0.6rem;
+    margin-left: 3rem;
+  }
+}
+
+.error {
+  color: rgb(231, 32, 32);
+  font-size: 16px;
+  padding-left: 8rem;
 }
 
 .close-button {
