@@ -8,12 +8,25 @@
   margin-top: 2rem;
 }
 
-.user-dashboard {
-  display: flex;
-  margin-left: 1rem;
-  #canvas {
-    margin-left: 20rem;
-    margin-top: 1rem;
+@media (max-width: 1400px) {
+  .user-dashboard {
+    display: flex;
+    flex-direction: column;
+    #canvas {
+      text-align: center;
+      margin: 4rem auto;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .user-dashboard {
+    display: flex;
+    margin-left: 1rem;
+    #canvas {
+      margin-left: 15rem;
+      margin-top: 1rem;
+    }
   }
 }
 
